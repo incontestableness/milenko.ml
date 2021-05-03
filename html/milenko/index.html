@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang=en>
+	<!-- Page modified from https://engineer.tf/exaflamer/ for fun -->
+	<head>
+		<!-- Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-176252591-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-176252591-1');
+		</script>
+
+		<title>"I am a GOD!"</title>
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+		<style>
+			.container {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%)
+			}
+			.avatar {
+				width: 512px;
+				height: 512px;
+				border: 5px #E00050 solid;
+				border-radius: 50%;
+				overflow: hidden;
+				animation: float 1.88s cubic-bezier(0.0, 0.4, 0.6, 1.0) infinite;
+			}
+			@keyframes float {
+				0% {
+					transform: translatex(-100px);
+				}
+				25% {
+					transform: translatex(0px);
+				}
+				50% {
+					transform: translatex(100px);
+				}
+				75% {
+					transform: translatex(0px);
+				}
+				100% {
+					transform: translatex(-100px);
+				}
+			}
+		</style>
+	</head>
+
+	<body background="engineer.gif">
+		<div class="container">
+			<div class="avatar">
+				<img src="here's johnny.png"/>
+			</div>
+			<audio id="music" autoplay loop>
+				<source src="Self - Out With a Bang.m4a" type="audio/mp4">
+			</audio>
+		</div>
+		<h1>You found an easter egg.</h1>
+		<h2>Click <a href="/">here</a> to return to the main site.</h2>
+	</body>
+
+	<script>
+		function setVolume()
+		{
+			mySound = document.getElementById("music");
+			mySound.volume = 0.5;
+		}
+		window.onload = setVolume;
+	</script>
+</html>
