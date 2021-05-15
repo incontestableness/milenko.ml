@@ -1,9 +1,3 @@
-Greetings.
-
-I can be reached via e-mail at whyistherumg0ne [at] protonmail.com
-Please encrypt your communications with my PGP public key and provide your own key if the message is sensitive.
-
-
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBF/ZbpsBEADD5pEPItZWPPvgfkYCYQ+SfVUzELkLUTf1scOS4d+/PkLmwaBH
