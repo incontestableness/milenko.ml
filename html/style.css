@@ -1,15 +1,34 @@
-body {
+.navbar-dark {
 	background-color: #121212;
-	font-family: "sans serif";
-	color: #E00050;
 }
 
 .underlined-link {
-	color: #40C0FF;
+	/* hathook purple? */
+	color: #A040F0;
 	text-decoration: underline;
 }
 
-.jumbotron {
+.btn.btn-link {
+	/* Co-dev blue */
+	color: #006DFF;
+}
+
+.card-header {
+	/* Card title background color */
+	background-color: #181818;
+}
+
+.card {
+	/* Card content background color */
+	background-color: #222222;
+	/* Page alignment */
+	border: 0px;
+}
+
+body {
+	/* There's like one pixel in each upper corner of the first card title because it's rounded for some reason */
+	/* Lazier fix is to just make the body background color the navbar background color */
 	background-color: #121212;
-	padding: 2rem;
+	font-family: "sans serif";
+	color: #E00050;
 }
