@@ -11,11 +11,9 @@ var bot_context = 50;
 var diff_context = 5;
 
 // How often to request data from the GLaDOS API (data is cached for five seconds)
-var updateFrequency = 5;
+var update_frequency = 5;
 // Maximum hours of data to display before pruning old data
-var hours = 6;
-// The maximum number of datapoints to display
-var data_limit = (hours * 60 * 60) / updateFrequency;
+var hours = 1;
 
 // Set chart display defaults
 Chart.defaults.elements.line.borderWidth = 1;
@@ -100,7 +98,7 @@ var graph = new Chart(canvas, {
 
 // Get data from API and insert into graph
 var counter = 0;
-function update() {
+function updateGraph() {
 	var time = new Date().toTimeString().split(" ")[0];
 	fetch("https://milenko.ml/api/stats")
 		.then(response => response.json())
@@ -114,6 +112,8 @@ function update() {
 			graph.data.datasets[3].data[counter] = (malicious_bots / all_players) * 100 || 0;
 			graph.data.labels[counter] = time;
 
+			// The maximum number of datapoints to display
+			var data_limit = (hours * 60 * 60) / update_frequency;
 			// Prune excess data
 			while (graph.data.datasets[0].data.length > data_limit) {
 				graph.data.labels.pop();
@@ -177,5 +177,5 @@ function update() {
 	counter += 1;
 }
 
-update();
-setInterval(update, updateFrequency * 1000);
+updateGraph();
+setInterval(updateGraph, update_frequency * 1000);
