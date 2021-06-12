@@ -116,7 +116,7 @@ function updateGraph() {
 			var data_limit = (hours * 60 * 60) / update_frequency;
 			// Prune excess data
 			while (graph.data.datasets[0].data.length > data_limit) {
-				graph.data.labels.pop();
+				graph.data.labels.shift();
 				graph.data.datasets.forEach(
 					(dataset) => {
 						dataset.data.shift();
