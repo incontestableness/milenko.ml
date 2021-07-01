@@ -96,6 +96,18 @@ var graph = new Chart(canvas, {
 	}
 });
 
+// Deletes the oldest data points from the graph
+function prune() {
+	graph.data.labels.shift();
+	graph.data.datasets.forEach(
+		(dataset) => {
+			dataset.data.shift();
+		}
+	);
+	graph.update();
+	counter -= 1;
+}
+
 // Get data from API and insert into graph
 var counter = 0;
 function updateGraph() {
@@ -116,14 +128,7 @@ function updateGraph() {
 			var data_limit = (hours * 60 * 60) / update_frequency;
 			// Prune excess data
 			while (graph.data.datasets[0].data.length > data_limit) {
-				graph.data.labels.shift();
-				graph.data.datasets.forEach(
-					(dataset) => {
-						dataset.data.shift();
-					}
-				);
-				graph.update();
-				counter -= 1;
+				prune();
 			}
 
 			// Try to give meaningful numerical context to the y-axes
@@ -176,6 +181,8 @@ function updateGraph() {
 		});
 	counter += 1;
 }
+
+alert("This graph will update every 5 seconds with live data from the GLaDOS API.\nYou can change which lines are shown on the graph by clicking each label at the top of the page.\nEach line's y-axis will automatically scale based on its min/max values, so do pay attention to them!\nBy default, old data will start getting pruned after an hour.");
 
 updateGraph();
 setInterval(updateGraph, update_frequency * 1000);
