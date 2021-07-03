@@ -8,21 +8,22 @@ var total_color = "#A0A0A0"; // Gray
 var human_color = "#00FF6D"; // Green
 var malicious_color = "#CA7000"; // Orange
 var diff_color = "#E0E000"; // Yellow
+var milenko = "#E00050"; // Red
 
 // Line thickness
 Chart.defaults.elements.line.borderWidth = 1;
 // Point size
 var pointSize = 2;
+// Radius around a point for mouse input to show info
+Chart.defaults.elements.point.pointHitRadius = 8;
 
-// All of our scales are y-axes
-Chart.defaults.scales.linear.axis = "y";
 // Start y-axes at zero
 Chart.defaults.scales.linear.min = 0;
 // Don't include weird max values in the y-axes
 Chart.defaults.scales.linear.ticks.includeBounds = false;
 
 // Graph title display settings
-Chart.defaults.plugins.title.color = "#E00050";
+Chart.defaults.plugins.title.color = milenko;
 Chart.defaults.plugins.title.padding = 0;
 fetch("https://milenko.ml/api/debug")
 	.then(response => response.json())
@@ -79,7 +80,21 @@ var graph = new Chart(canvas, {
 			}
 		},
 		scales: {
+			x: {
+				axis: "x",
+				ticks: {
+					// X-axis time label color
+					color: milenko
+				},
+				grid: {
+					// Don't draw short lines above each label
+					drawTicks: false,
+					// Don't draw long vertical lines for each tick
+					drawOnChartArea: false
+				}
+			},
 			all_players: {
+				axis: "y",
 				position: "left",
 				ticks: {
 					// Don't display tick values as e.g. 7,000.0000000000010
@@ -91,17 +106,30 @@ var graph = new Chart(canvas, {
 					stepSize: 250
 				},
 				// Give the graph some headroom
-				suggestedMax: 10000
+				suggestedMax: 10000,
+				grid: {
+					// Don't draw a vertical line along this axis
+					drawTicks: false,
+					// Horizontal grid line color
+					color: "#313131"
+				}
 			},
 			malicious_bots: {
+				axis: "y",
 				position: "right",
 				ticks: {
 					color: malicious_color,
 					stepSize: 25
 				},
-				suggestedMax: 1000
+				suggestedMax: 1000,
+				grid: {
+					drawTicks: false,
+					// Don't draw horizontal grid lines
+					drawOnChartArea: false
+				}
 			},
 			difficulty: {
+				axis: "y",
 				position: "right",
 				ticks: {
 					// Pad the percentages to two decimal places and add a percent sign
@@ -111,7 +139,11 @@ var graph = new Chart(canvas, {
 					color: diff_color,
 					stepSize: 0.25
 				},
-				suggestedMax: 10
+				suggestedMax: 10,
+				grid: {
+					drawTicks: false,
+					drawOnChartArea: false
+				}
 			}
 		}
 	}
