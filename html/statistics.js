@@ -21,6 +21,16 @@ Chart.defaults.scales.linear.min = 0;
 // Don't include weird max values in the y-axes
 Chart.defaults.scales.linear.ticks.includeBounds = false;
 
+// Graph title display settings
+Chart.defaults.plugins.title.color = "#E00050";
+Chart.defaults.plugins.title.padding = 0;
+fetch("https://milenko.ml/api/debug")
+	.then(response => response.json())
+	.then(json => {
+			Chart.defaults.plugins.title.text = "GLaDOS API v" + json["response"]["debug_info"]["version"] + " Live Statistics";
+		}
+	);
+
 // Create graph
 var canvas = document.getElementById("graph").getContext("2d");
 var graph = new Chart(canvas, {
@@ -63,6 +73,11 @@ var graph = new Chart(canvas, {
 	},
 	options: {
 		maintainAspectRatio: false,
+		plugins: {
+			title: {
+				display: true,
+			}
+		},
 		scales: {
 			all_players: {
 				position: "left",
