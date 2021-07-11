@@ -29,126 +29,215 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand" href="index.html">
 				<img src="favicon.ico" width="64" height="64" class="d-inline-block" alt="">
-				The Milenko Project
 			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+			<!-- Mobile browsers need a hamburger menu -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+			<!-- Site navigation bar -->
+			<div class="collapse navbar-collapse" id="navbarToggler">
 				<div class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<a class="nav-item nav-link active" href="index.html">Home (You are here)</a>
-					<a class="nav-item nav-link active" href="faq.html">Frequently Asked Questions</a>
-					<a class="nav-item nav-link active" href="livestats.html">Live Statistics</a>
+					<a class="nav-item nav-link active" href="index.html">The Milenko Project</a>
+					<a class="nav-item nav-link" href="livestats.html">GLaDOS Live Statistics</a>
 					<a class="nav-item nav-link" href="https://discord.gg/NrmTrSesPX">Discord Server</a>
-					<a class="nav-item nav-link" href="https://www.patreon.com/milenko">Donations Page</a>
+					<a class="nav-item nav-link" href="https://www.patreon.com/milenko">Patreon</a>
+					<a class="nav-item nav-link" href="https://ko-fi.com/milenko">Ko-fi</a>
 				</div>
 			</div>
 		</nav>
 
 		<div id="accordion">
 			<div class="card">
-				<div class="card-header" id="h_1">
+				<div class="card-header" id="h_who">
 					<h5 class="mb-0">
-						<button class="btn btn-link" data-toggle="collapse" data-target="#c_1" aria-expanded="true" aria-controls="c_1">
-							What is a Milenko bot?
+						<button class="btn btn-link" data-toggle="collapse" data-target="#c_who" aria-expanded="true" aria-controls="c_who">
+							Who's behind this?
 						</button>
 					</h5>
 				</div>
-				<div id="c_1" class="collapse show" aria-labelledby="h_1" data-parent="#accordion">
+				<div id="c_who" class="collapse show" aria-labelledby="h_who" data-parent="#accordion">
 					<div class="card-body">
-						A <strong>"Milenko bot"</strong> is an <strong>"anti-bot bot"</strong> that helps to remove malicious bots from Team Fortress 2 casual matches by detecting, reporting, votekicking, and killing them in the interim. They also automatically collect data about bots that can be used with Pazer's TF2 Bot Detector program to help you kick bots faster.<br>
-						The project is named after the song <a class="underlined-link" href="https://www.youtube.com/watch?v=KAU54CvzCwg">"The Great Milenko" by Insane Clown Posse</a>.
+						For this project, I go by the name <a class="underlined-link" href="https://github.com/incontestableness">Milenko</a>.<br>
+						I started writing software for TF2's bot problem after realizing the potential of bots that could counter bots, an idea first introduced to me by <a class="underlined-link" href="https://github.com/2l47">Sydney</a>, who mostly does code review now.<br>
+						<br>
+						The project's name and my moniker stem from the song <a class="underlined-link" href="https://www.youtube.com/watch?v=KAU54CvzCwg">"The Great Milenko" by Insane Clown Posse</a>.
 					</div>
 				</div>
-				<div class="card-header" id="h_2">
+				<div class="card-header" id="h_what">
 					<h5 class="mb-0">
-						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#c_2" aria-expanded="false" aria-controls="c_2">
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#c_what" aria-expanded="false" aria-controls="c_what">
+							What do you work on?
+						</button>
+					</h5>
+				</div>
+				<div id="c_what" class="collapse" aria-labelledby="h_what" data-parent="#accordion">
+					<div class="card-body">
+						<strong><u>Small robots.</u></strong>
+						<ul>
+							<li>A <strong>Milenko bot</strong> is an <strong>"anti-bot bot"</strong> that helps to remove malicious bots from Team Fortress 2 casual matches by detecting, reporting, votekicking, and killing them in the interim.</li>
+							<li>They also send statistical data about malicious bots to GLaDOS, which enables her to provide lists that can be used with Pazer's TF2 Bot Detector program to help you kick bots faster.</li>
+						</ul>
+
+						<strong><u>Big robots.</u></strong>
+						<ul>
+							<li><a class="underlined-link" href="https://github.com/incontestableness/GLaDOS">GLaDOS</a> continuously scans Valve's TF2 casual gamemode servers to automatically detect malicious bots.</li>
+							<li>Using reports from Milenko bots, GLaDOS manages a <a class="underlined-link" href="https://incontestableness.github.io/milenko-lists/playerlist.milenko-cumulative.json">player list</a> of malicious bot Steam IDs for <a class="underlined-link" href="https://github.com/PazerOP/tf2_bot_detector">TF2BD</a>.</li>
+							<li>Her high-level <a class="underlined-link" href="https://github.com/incontestableness/GLaDOS#is-the-glados-api-publicly-available">API</a> tracks player/bot statistics and enables on-demand detection of malicious bots and namestealers on any given Valve server.</li>
+							<li>The API also provides an automatic bot name detection <a class="underlined-link" href="/api/namerules">rules list</a> for <a class="underlined-link" href="https://github.com/PazerOP/tf2_bot_detector">TF2BD</a>.</li>
+							<li>You can actually see some of the statistics GLaDOS makes available through the API pretty easily - our Live Statistics page draws a graph in your browser with data pulled from GLaDOS in real time.</li>
+						</ul>
+
+						<strong><u>Other software.</u></strong>
+						<ul>
+							<li>We're in the process of developing <a class="underlined-link" href="https://github.com/incontestableness/hathook-public">hathook</a> and <a class="underlined-link" href="https://github.com/incontestableness/portalgun">portalgun</a> which will enable Linux users to avoid bots in TF2's casual gamemode.</li>
+						</ul>
+					</div>
+				</div>
+				<div class="card-header" id="h_bots">
+					<h5 class="mb-0">
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#c_bots" aria-expanded="false" aria-controls="c_bots">
 							What do Milenko bots do?
 						</button>
 					</h5>
 				</div>
-				<div id="c_2" class="collapse" aria-labelledby="h_2" data-parent="#accordion">
+				<div id="c_bots" class="collapse" aria-labelledby="h_bots" data-parent="#accordion">
 					<div class="card-body">
+						Milenko bots search for TF2 casual matches with malicious bots and then join to help kick them from the game.<br>
+						Thanks to <a class="underlined-link" href="https://github.com/incontestableness/GLaDOS">GLaDOS' API</a> and <a class="underlined-link" href="https://github.com/incontestableness/portalgun">portalgun</a>, Milenko bots will only join matches with malicious bots, and only one Milenko bot will join at any time.<br>
+						<br>
+						Once in a match, Milenko bots will:<br>
 						<ul>
-							<li>Milenko bots join casual matches in Team Fortress 2 and automatically detect malicious bots.</li>
-							<li>Milenko bots will join as the Spy class and perform either the Disco Fever or Luxury Lounge taunt in the spawn room.</li>
-							<br>
-							<li>If a malicious bot is detected in the match, Milenko bots will:</li>
-							<ol>
-								<li>Announce a list of the malicious bots on each team in the chat every 20 seconds</li>
-								<li>Try to call vote kicks on these bots as soon as possible</li>
-								<li>Switch to the Sniper class and target <strong>only</strong> these malicious bots</li>
-							</ol>
-							<li>This helps to prevent malicious bots from ruining the fun of innocent players and makes it immediately obvious when malicious bots are present.</li>
-							<br>
-							<li>When a votekick is called, they will also inform players in chat <strong>whether or not the player being kicked is a known bot.</strong></li>
-							<li>This helps to prevent innocent players from being kicked by malicious bots or other players.</li>
-							<li>Milenko bots will automatically vote Yes on malicious bots and No on regular players.</li>
-							<br>
-							<li>If there are no bots detected after about 15 seconds, Milenko bots will <strong>leave automatically.</strong></li>
-							<li>You don't need to kick Milenko - focus your efforts on malicious bots instead.</li>
+							<li>Announce a list of malicious bots on both teams in the chat every 20 seconds</li>
+								+ This makes the presence of malicious bots immediately obvious to all players
+							<li>Play Sniper and target malicious bots to prevent them from ruining the fun of innocent players</li>
+							<li>Try to call vote kicks against bots as soon as possible</li>
+							<li>Tell players whether those being kicked are bots</li>
+								+ This helps to prevent innocent players from being kicked by malicious bots or mistaken players
+							<li>Automatically vote Yes against known malicious bots and remain neutral against other players</li>
+							<li>Once all the bots have been kicked, Milenko bots will <strong>leave automatically</strong></li>
+						</ul>
+						Milenko bots are there to help - just kick the malicious bots and they'll be out of your way.<br>
+						<br>
+						However, if you're curious, they also have some "joke" features.<br>
+						<ul>
+							<li>When a malicious bot is detected nearby, Milenko bots will use the "Sentry ahead!" voice line every 15 seconds as a warning to their teammates.</li>
+							<li>After killing the last alive malicious bot on the other team, Milenko bots will taunt with "The Director's Vision".</li>
+							<li>If you start a partner taunt near a Milenko bot, it will try to automatically join.</li>
+							<li>When no malicious bots are detected, Milenko bots will "explode" shortly before leaving.</li>
 						</ul>
 					</div>
 				</div>
-				<div class="card-header" id="h_3">
+				<div class="card-header" id="h_diff">
 					<h5 class="mb-0">
-						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#c_3" aria-expanded="false" aria-controls="c_3">
-							How can I kick malicious bots faster and more easily?
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#c_diff" aria-expanded="false" aria-controls="c_diff">
+							How can I tell the difference between Milenko and malicious bots?
 						</button>
 					</h5>
 				</div>
-				<div id="c_3" class="collapse" aria-labelledby="h_3" data-parent="#accordion">
+				<div id="c_diff" class="collapse" aria-labelledby="h_diff" data-parent="#accordion">
+					<div class="card-body">
+						Please read <a class="underlined-link" href="https://steamcommunity.com/sharedfiles/filedetails/?id=1935994199">this guide</a> for basic information on how to identify common malicious bots.<br>
+						<br>
+						In addition to the behaviors described in "What do Milenko bots do?", there are two very important things that distinguish Milenko bots from malicious bots:<br>
+						<ol>
+							<li>Milenko bots will always use a <strong>random TF2 profile picture</strong> and a <strong>random name</strong>, except on special occasions.</li>
+								+ Bots with names like "Milenko's Bot Detector" are likely impersonators, but a name like "https://milenko.ml" <i>might</i> be legitimate.<br>
+								+ The best way to judge a bot is by its actions, not its name.
+							<li>Milenko bots will not wear any cosmetic items except for the Mann Co. hat, which is given to players when they purchase something from the in-game store.</li>
+								+ If you see a sniper wearing three hats at once, you can safely assume they're cheating.
+						</ol>
+						Here are a few examples of random names Milenko bots might use:
+						<ul>
+							<li>interoperability</li>
+							<li>sand cricket</li>
+							<li>fishing expedition</li>
+							<li>chestnut tree</li>
+							<li>wind chime</li>
+							<li>capital of finland</li>
+						</ul>
+					</div>
+				</div>
+				<div class="card-header" id="h_tf2bd">
+					<h5 class="mb-0">
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#c_tf2bd" aria-expanded="false" aria-controls="c_tf2bd">
+							You mentioned TF2BD. What's that? Where can I get better lists?
+						</button>
+					</h5>
+				</div>
+				<div id="c_tf2bd" class="collapse" aria-labelledby="h_tf2bd" data-parent="#accordion">
 					<div class="card-body">
 						I strongly encourage you to use Pazer's TF2 Bot Detector, a program that helps to identify malicious bots and <strong>automatically kick them!</strong><br>
-						You can download his program from GitHub <a class="underlined-link" href="https://github.com/PazerOP/tf2_bot_detector">here</a>.<br>
+						You can get an idea of what it does from <a class="underlined-link" href="https://botdetector.tf/">their site</a>, or for more information, read the program's <a class="underlined-link" href="https://github.com/PazerOP/tf2_bot_detector#readme">FAQ</a> on its GitHub repository.<br>
+						By default, TF2BD does not detect a lot of bots. To help, you can add some third party player lists and rules they endorse on their <a class="underlined-link" href="https://github.com/PazerOP/tf2_bot_detector/wiki/Customization#third-party-player-lists-and-rules">wiki page</a>.<br>
+						In fact, we maintain <strong>our own</strong> lists which you can add to the tool!<br>
 						<br>
-						By default, it does not detect a lot of bots. You can add third party player lists and rules from the wiki page <a class="underlined-link" href="https://github.com/PazerOP/tf2_bot_detector/wiki/Customization#third-party-player-lists-and-rules">here</a>.<br>
-						In fact, we maintain our own list of malicious bots which you can add to the tool!<br>
-						Most malicious bots are automatically detected by Milenko bots using signals that they broadcast to everyone in the game, which they do to avoid shooting each other.<br>
-						As such, our list is extremely accurate and contains mostly malicious bots. A few cheaters using cathook may also be on the list.<br>
+						<a class="underlined-link" href="https://incontestableness.github.io/milenko-lists/playerlist.milenko-cumulative.json">Milenko's recommended cumulative player list</a><br>
+						Most malicious bots send signals to everyone in the game to avoid shooting each other.<br>
+						Milenko bots automatically detect these and report them to GLaDOS so she can add them to the player list.<br>
+						Thanks to this, our player list is extremely accurate and contains mostly malicious bots. A few cheaters may also be on the list.<br>
 						<br>
-						Certain bots that tend to use the same name (e.g. "<i>braaaap 23</i>") may be detected by their in-game name. If you're brilliant enough to set your name to that of a bot, players will kick you pretty quickly. As such, it's reasonable that Milenko bots should add you to the list as well. If you think you got added by mistake, just join the Discord server and send a message to <strong>The Great Milenko#6950</strong> (that's me), and I'll remove you from the list.<br>
+						<a class="underlined-link" href="/api/namerules">GLaDOS automatic bot name detection rules list</a><br>
+						In addition to our player list, we also have an automatically-generated rules list that temporarily marks bots by their in-game name.<br>
+						Whereas the player list is added to by Milenko bots as they encounter malicious bots, the rules list is generated by the <a class="underlined-link" href="https://github.com/incontestableness/GLaDOS#is-the-glados-api-publicly-available">GLaDOS API</a> using data she collects while continuously scanning TF2 servers and looking for patterns in names.<br>
+						This makes it an extremely effective tool for automatically detecting new bots!<br>
 						<br>
-						You can download the cumulative Milenko playerlist <a class="underlined-link" href="https://incontestableness.github.io/milenko-lists/playerlist.milenko-cumulative.json">here</a>.<br>
-						In addition to our player list, we also have an automatically-generated rules list that lets you detect bots by their in-game name. You can download it from: <a class="underlined-link" href="/api/namerules">https://milenko.ml/api/namerules</a><br>
-						Whereas the player list is generated by Milenko bots as they encounter malicious bots, the rules list is generated by the <a class="underlined-link" href="https://github.com/incontestableness/GLaDOS#is-the-glados-api-publicly-available">GLaDOS API</a> by constantly scanning all TF2 servers and looking for patterns in names. This makes it an extremely effective tool for automatically detecting new bots!<br>
-						<br>
-						Lastly, we also provide two "dummy" player and rules lists that can replace and disable the official rules that come with TF2BD, if you don't like them for whatever reason.<br>
+						Lastly, we also provide two "dummy" player and rules lists that can replace and disable the official lists that come with TF2BD.<br>
+						You should only install these if you don't want to use the official TF2BD lists because you don't trust them.<br>
 						<a class="underlined-link" href="playerlist.official.json">Dummy TF2BD official playerlist</a><br>
 						<a class="underlined-link" href="rules.official.json">Dummy TF2BD official rules</a><br>
 						<br>
-						Read Pazer's TF2 Bot Detector <a class="underlined-link" href="https://github.com/PazerOP/tf2_bot_detector/wiki/Customization#third-party-player-lists-and-rules">wiki page</a> for information on how to add the lists to the tool. (Just save the lists you want with Ctrl+S and then move them to the bot detector "cfg" folder.)<br>
-						In the future, we hope to make multiple lists available for download that isolate different detection methods. This would let you see how a bot was detected.<br>
-					</div>
-				</div>
-				<div class="card-header" id="h_4">
-					<h5 class="mb-0">
-						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#c_4" aria-expanded="false" aria-controls="c_4">
-							Where's the Discord server?
-						</button>
-					</h5>
-				</div>
-				<div id="c_4" class="collapse" aria-labelledby="h_4" data-parent="#accordion">
-					<div class="card-body">
-						Down the hall and to your left: <a class="underlined-link" href="https://discord.gg/NrmTrSesPX">https://discord.gg/NrmTrSesPX</a><br>
-						We use the server to post updates on development, accept feedback, provide real-time statistics, and more. Check it out!
-					</div>
-				</div>
-				<div class="card-header" id="h_5">
-					<h5 class="mb-0">
-						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#c_5" aria-expanded="false" aria-controls="c_5">
-							Help pay the server bills! We can't continue without your support.
-						</button>
-					</h5>
-				</div>
-				<div id="c_5" class="collapse" aria-labelledby="h_5" data-parent="#accordion">
-					<div class="card-body">
-						If you like what we're doing, show us some support! It costs hundreds of dollars per month to host the bots in the cloud.<br>
-						Please consider subscribing to the project's Patreon <a class="underlined-link" href="https://www.patreon.com/milenko">here</a>.<br>
+						To download lists, right click the links and select "Save Link As..." and then save them wherever you want.<br>
+						Then, to install them, you just need to move them to the bot detector "cfg" folder.<br>
+						See Pazer's TF2 Bot Detector <a class="underlined-link" href="https://github.com/PazerOP/tf2_bot_detector/wiki/Customization#third-party-player-lists-and-rules">wiki page</a> for information on opening the cfg folder.<br>
 						<br>
-						<strong>Bitcoin</strong> donations are also welcome: 35ASdQQ55ALDU9NSu2unTcRzYe9LckG6M5<br>
+						In the future, we hope improvements to TF2BD will allow you to see more details about how a bot was detected.
+					</div>
+				</div>
+				<div class="card-header" id="h_discord">
+					<h5 class="mb-0">
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#c_discord" aria-expanded="false" aria-controls="c_discord">
+							Do you have a Discord server?
+						</button>
+					</h5>
+				</div>
+				<div id="c_discord" class="collapse" aria-labelledby="h_discord" data-parent="#accordion">
+					<div class="card-body">
+						We do! We use it to post updates on development, accept feedback, provide real-time statistics, and more. Check it out - the link's in the navigation bar at the top of the page.
+					</div>
+				</div>
+				<div class="card-header" id="h_donate">
+					<h5 class="mb-0">
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#c_donate" aria-expanded="false" aria-controls="c_donate">
+							Can I donate?
+						</button>
+					</h5>
+				</div>
+				<div id="c_donate" class="collapse" aria-labelledby="h_donate" data-parent="#accordion">
+					<div class="card-body">
+						If you like what we're doing, <strong>please do!</strong><br>
+						The cloud servers that Milenko bots run on cost <strong>hundreds of dollars per month.</strong> We simply can't continue running without your support.<br>
+						Please subscribe to the project's <a class="underlined-link" href="https://www.patreon.com/milenko">Patreon</a> or, alternatively, make a one-time donation through our <a class="underlined-link" href="https://ko-fi.com/milenko">Ko-fi</a>.<br>
+						<br>
+						<u>We also accept donations in cryptocurrency!</u><br>
+						Our <strong>Bitcoin</strong> address is: 35ASdQQ55ALDU9NSu2unTcRzYe9LckG6M5<br>
 						If your Bitcoin wallet supports it, you should send to this bip32 address instead for reduced transaction fees: bc1q728r5n9mkeege7783tzhqgcayy8s44qwhwllsz<br>
-						If you would prefer to donate <strong>Monero</strong>, you can send to this address: 83bvucMFZh72A5BrEeaNBAeZnfbrAdcGNME9o9mydnjsc1rhDK4st5MHdg1qguXrpf4Sf67dcyNmy6TrKZ9eeTVd5h5Chn7
+						If you would prefer to send <strong>Monero</strong>, our address is: 83bvucMFZh72A5BrEeaNBAeZnfbrAdcGNME9o9mydnjsc1rhDK4st5MHdg1qguXrpf4Sf67dcyNmy6TrKZ9eeTVd5h5Chn7
+					</div>
+				</div>
+				<div class="card-header" id="h_contact">
+					<h5 class="mb-0">
+						<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#c_contact" aria-expanded="true" aria-controls="c_contact">
+							How can I contact you?
+						</button>
+					</h5>
+				</div>
+				<div id="c_contact" class="collapse" aria-labelledby="h_contact" data-parent="#accordion">
+					<div class="card-body">
+						The fastest way to reach me is to just send me a message on Discord.<br>
+						You can join our server through the link in the navigation bar at the top of the page or send me a DM at: <strong>The Great Milenko#6950</strong><br>
+						<br>
+						I can also be reached via e-mail at: <strong>whyistherumg0ne [at] protonmail.com</strong><br>
+						Want to encrypt your e-mail with PGP? <a class="underlined-link" href="pgp-key.txt">Here's my public key.</a>
 					</div>
 				</div>
 			</div>

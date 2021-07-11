@@ -1,34 +1,49 @@
+/* Make the site more accessible by using the OpenDyslexic typeface (https://github.com/antijingoist/opendyslexic) */
+@import url("https://milenko.ml/OpenDyslexic.css");
+
+/* Site navigation bar */
 .navbar-dark {
+	/* Black */
 	background-color: #121212;
 }
 
-.underlined-link {
-	/* hathook purple? */
-	color: #A040F0;
-	text-decoration: underline;
-}
-
-.btn.btn-link {
-	/* Co-dev blue */
+/* Card title */
+.card-header, .btn.btn-link {
+	/* Dark gray */
+	background-color: #181818;
+	/* Co-developer blue */
 	color: #006DFF;
 }
 
-.card-header {
-	/* Card title background color */
-	background-color: #181818;
-}
 
+/* Card content */
 .card {
-	/* Card content background color */
+	/* Lighter gray */
 	background-color: #222222;
-	/* Page alignment */
+	/* Left-align to the page */
 	border: 0px;
+	/* Don't round corners */
+	border-radius: 0px;
 }
 
+/* Page content */
 body {
-	/* There's like one pixel in each upper corner of the first card title because it's rounded for some reason */
-	/* Lazier fix is to just make the body background color the navbar background color */
+	/* Black */
 	background-color: #121212;
-	font-family: "sans serif";
+	/* Defined in OpenDyslexic.css */
+	font-family: opendyslexic;
+	/* Milenko red */
 	color: #E00050;
+}
+
+/* Links */
+.underlined-link {
+	/* Hathook purple? */
+	color: #A040F0;
+	text-decoration: underline;
+}
+.underlined-link:hover {
+	/* Darker hathook purple? */
+	color: #9030E0;
+	text-decoration: underline;
 }
