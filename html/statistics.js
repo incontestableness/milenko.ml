@@ -157,7 +157,6 @@ function prune() {
 			dataset.data.shift();
 		}
 	);
-	graph.update();
 	counter -= 1;
 }
 
@@ -189,7 +188,28 @@ function updateGraph() {
 	counter += 1;
 }
 
-alert("This graph will update every 5 seconds with live data from the GLaDOS API.\nYou can change which lines are shown on the graph by clicking the labels at the top of the page.\nThe y-axes may automatically increase based on the current datasets, so do pay them some mind.\nBy default, old data will start getting pruned after two hours. You can change this behavior via window.hours in the console.");
+alert("This graph will update every 5 seconds with live data from the GLaDOS API.\nYou can change which lines are shown on the graph by clicking the labels at the top of the page.\nThe y-axes may automatically increase based on the current datasets, so do pay them some mind.\nBy default, old data will start getting pruned after two hours. You can change this behavior by running \"rescaleTo(hours)\" in your browser's console.");
 
 updateGraph();
-setInterval(updateGraph, update_frequency * 1000);
+var updateInterval = setInterval(updateGraph, update_frequency * 1000);
+
+// Helper function to dynamically set the graph's timescale in hours through the browser's console
+function rescaleTo(hours) {
+	// Stop updating
+	clearInterval(updateInterval);
+	// Clear existing datapoints
+	while (graph.data.datasets[0].data.length > 0) {
+		prune();
+	}
+	// Set new timescale
+	window.hours = hours;
+	// How many datapoints can we render before they become excessively clumped together?
+	var max_renderable = 1440;
+	// Calculate desired update frequency
+	var desired_frequency = (hours * 60 * 60) / max_renderable;
+	// Set new update frequency (minimum 5 seconds due to GLaDOS API caching)
+	update_frequency = Math.max(5, desired_frequency);
+	alert("New datapoint maximum set to " + hours + " hours. Now updating every " + update_frequency + " seconds...");
+	updateGraph();
+	updateInterval = setInterval(updateGraph, update_frequency * 1000);
+}
