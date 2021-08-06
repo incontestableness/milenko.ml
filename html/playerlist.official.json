@@ -5,8 +5,7 @@
 			"Sydney"
 		],
 		"title": "Dummy official player list",
-		"description": "Effectively disables the official player list.",
-		"update_url": "https://milenko.ml/playerlist.official.json"
+		"description": "Effectively disables the official player list."
 	},
 	"players": []
 }

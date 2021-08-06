@@ -5,8 +5,7 @@
 			"Sydney"
 		],
 		"title": "Dummy official rules list",
-		"description": "Effectively disables the official rules list.",
-		"update_url": "https://milenko.ml/rules.official.json"
+		"description": "Effectively disables the official rules list."
 	},
 	"rules": []
 }
