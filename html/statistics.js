@@ -7,7 +7,7 @@ var hours = 2;
 var total_color = "#A0A0A0"; // Gray
 var human_color = "#00FF6D"; // Green
 var malicious_color = "#CA7000"; // Orange
-var diff_color = "#E0E000"; // Yellow
+var impact_color = "#E0E000"; // Yellow
 var milenko = "#E00050"; // Red
 
 // Line thickness
@@ -64,11 +64,11 @@ var graph = new Chart(canvas, {
 			},
 			{
 				label: "Bot percentage",
-				borderColor: diff_color,
-				pointBackgroundColor: diff_color,
-				pointBorderColor: diff_color,
+				borderColor: impact_color,
+				pointBackgroundColor: impact_color,
+				pointBorderColor: impact_color,
 				pointRadius: pointSize,
-				yAxisID: "difficulty"
+				yAxisID: "bot_impact"
 			}
 		]
 	},
@@ -106,7 +106,7 @@ var graph = new Chart(canvas, {
 					stepSize: 250
 				},
 				// Give the graph some headroom
-				suggestedMax: 10000,
+				suggestedMax: 15000,
 				grid: {
 					// Don't draw a vertical line along this axis
 					drawTicks: false,
@@ -121,14 +121,14 @@ var graph = new Chart(canvas, {
 					color: malicious_color,
 					stepSize: 25
 				},
-				suggestedMax: 1000,
+				suggestedMax: 1500,
 				grid: {
 					drawTicks: false,
 					// Don't draw horizontal grid lines
 					drawOnChartArea: false
 				}
 			},
-			difficulty: {
+			bot_impact: {
 				axis: "y",
 				position: "right",
 				ticks: {
@@ -136,10 +136,10 @@ var graph = new Chart(canvas, {
 					callback: function(value, index, values) {
 						return value.toFixed(2) + "%";
 					},
-					color: diff_color,
+					color: impact_color,
 					stepSize: 0.25
 				},
-				suggestedMax: 10,
+				suggestedMax: 15,
 				grid: {
 					drawTicks: false,
 					drawOnChartArea: false
@@ -168,12 +168,13 @@ function updateGraph() {
 		.then(response => response.json())
 		.then(json => {
 			var ingame = json["response"]["casual_in_game"];
-			var all_players = ingame["totals"]["all_players"]
-			var malicious_bots = ingame["totals"]["malicious_bots"]
+			var all_players = ingame["totals"]["all_players"];
+			var malicious_bots = ingame["totals"]["malicious_bots"];
+			var impact = (malicious_bots / all_players) * 100 || 0;
 			graph.data.datasets[0].data[counter] = all_players;
 			graph.data.datasets[1].data[counter] = all_players - malicious_bots;
 			graph.data.datasets[2].data[counter] = malicious_bots;
-			graph.data.datasets[3].data[counter] = (malicious_bots / all_players) * 100 || 0;
+			graph.data.datasets[3].data[counter] = impact;
 			graph.data.labels[counter] = time;
 
 			// The maximum number of datapoints to display
