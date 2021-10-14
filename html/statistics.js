@@ -1,3 +1,18 @@
+// Region selector setup
+var selector = document.getElementById("region_selector");
+fetch("https://milenko.ml/mappings.json")
+	.then(response => response.json())
+	.then(json => {
+			window.region_id_mapper = json["regions"]["by_id"];
+			for (var region_id in region_id_mapper) {
+				var region_name = region_id_mapper[region_id]["descriptor"];
+				selector.innerHTML += "<input type='checkbox' class='region_checkbox' id='" + region_id + "' name='" + region_name + "' checked='true' onChange='resetGraph()'>";
+				selector.innerHTML += "<label class='region_label' for='" + region_id + "'>" + region_name + "</label>";
+			}
+		}
+	);
+
+
 // How often to request data from the GLaDOS API (data is cached for five seconds)
 var update_frequency = 5;
 // Maximum hours of data to display before pruning old data
@@ -24,11 +39,12 @@ Chart.defaults.scales.linear.ticks.includeBounds = false;
 
 // Graph title display settings
 Chart.defaults.plugins.title.color = milenko;
+Chart.defaults.plugins.title.font = {"family": "opendyslexic", "size": 24};
 Chart.defaults.plugins.title.padding = 0;
-fetch("https://milenko.ml/api/debug")
+fetch("https://milenko.ml/api/info")
 	.then(response => response.json())
 	.then(json => {
-			Chart.defaults.plugins.title.text = "GLaDOS API v" + json["response"]["debug_info"]["version"] + " Live Statistics";
+			Chart.defaults.plugins.title.text = "GLaDOS API v" + json["response"]["info"]["api_version"] + " Live Statistics";
 		}
 	);
 
@@ -73,6 +89,7 @@ var graph = new Chart(canvas, {
 		]
 	},
 	options: {
+		responsive: true,
 		maintainAspectRatio: false,
 		plugins: {
 			title: {
@@ -168,12 +185,22 @@ function updateGraph() {
 		.then(response => response.json())
 		.then(json => {
 			var ingame = json["response"]["casual_in_game"];
-			var all_players = ingame["totals"]["all_players"];
-			var malicious_bots = ingame["totals"]["malicious_bots"];
-			var impact = (malicious_bots / all_players) * 100 || 0;
-			graph.data.datasets[0].data[counter] = all_players;
-			graph.data.datasets[1].data[counter] = all_players - malicious_bots;
-			graph.data.datasets[2].data[counter] = malicious_bots;
+			var player_total = 0;
+			var bot_total = 0;
+			var regional_players = ingame["per_region"]["all_players"];
+			var regional_bots = ingame["per_region"]["malicious_bots"];
+			for (var region_id in window.region_id_mapper) {
+				var region_input = document.getElementById(region_id);
+				if (region_input.checked) {
+					var region_descriptor = region_id_mapper[region_id]["descriptor"];
+					player_total += regional_players[region_descriptor];
+					bot_total += regional_bots[region_descriptor];
+				}
+			}
+			var impact = (bot_total / player_total) * 100 || 0;
+			graph.data.datasets[0].data[counter] = player_total;
+			graph.data.datasets[1].data[counter] = player_total - bot_total;
+			graph.data.datasets[2].data[counter] = bot_total;
 			graph.data.datasets[3].data[counter] = impact;
 			graph.data.labels[counter] = time;
 
@@ -189,28 +216,59 @@ function updateGraph() {
 	counter += 1;
 }
 
-alert("This graph will update every 5 seconds with live data from the GLaDOS API.\nYou can change which lines are shown on the graph by clicking the labels at the top of the page.\nThe y-axes may automatically increase based on the current datasets, so do pay them some mind.\nBy default, old data will start getting pruned after two hours. You can change this behavior by running \"rescaleTo(hours)\" in your browser's console.");
+alert("This graph will update every 5 seconds with live data from the GLaDOS API.\n" +
+"\n" +
+"You can select which datacenter regions are included in statistics by ticking the respective checkboxes.\n" +
+"You can also toggle which statistics are shown on the graph by clicking on the labels in the legend.\n" +
+"\n" +
+"The y-axes may automatically increase based on the current datasets, so do pay them some mind.\n" +
+"By default, old data will start getting pruned after two hours. You can change this behavior by running \"rescaleTo(hours)\" in your browser's console.")
 
 updateGraph();
 var updateInterval = setInterval(updateGraph, update_frequency * 1000);
 
-// Helper function to dynamically set the graph's timescale in hours through the browser's console
-function rescaleTo(hours) {
+// Stops updating and then clears the graph
+function clearGraph() {
 	// Stop updating
 	clearInterval(updateInterval);
 	// Clear existing datapoints
 	while (graph.data.datasets[0].data.length > 0) {
 		prune();
 	}
-	// Set new timescale
-	window.hours = hours;
+}
+
+// Calculates and sets the update frequency
+function calculateUpdateFrequency() {
 	// How many datapoints can we render before they become excessively clumped together?
 	var max_renderable = 1440;
 	// Calculate desired update frequency
 	var desired_frequency = (hours * 60 * 60) / max_renderable;
 	// Set new update frequency (minimum 5 seconds due to GLaDOS API caching)
 	update_frequency = Math.max(5, desired_frequency);
-	alert("New datapoint maximum set to " + hours + " hours. Now updating every " + update_frequency + " seconds...");
+}
+
+// Starts graphing again
+function startGraph() {
 	updateGraph();
 	updateInterval = setInterval(updateGraph, update_frequency * 1000);
+}
+
+// Resets the graph, called when the region selection is changed
+function resetGraph() {
+	clearGraph();
+	startGraph();
+}
+
+// Helper function to dynamically set the graph's timescale in hours through the browser's console
+function rescaleTo(hours) {
+	// Stop and clear the existing graph
+	clearGraph();
+	// Set new timescale
+	window.hours = hours;
+	// Set the new update frequency
+	calculateUpdateFrequency();
+	// Inform user
+	alert("New datapoint maximum set to " + hours + " hours. Now updating every " + update_frequency + " seconds...");
+	// Start updating the graph again
+	startGraph();
 }

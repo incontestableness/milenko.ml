@@ -28,27 +28,18 @@
 	</head>
 
 	<body>
-		<!-- Actually implementing web design is an abstract kind of hell -->
-		<nav class="navbar navbar-expand-lg navbar-dark">
-			<a class="navbar-brand" href="index.html">
-				<img src="favicon.ico" width="64" height="64" class="d-inline-block" alt="">
+		<!-- Substitute the usual navbar with a minimal link back to the homepage -->
+		<div style="position: absolute;">
+			<a class="underlined-link" href="index.html">
+				<img src="favicon.ico" width="64" height="64">Home
 			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-				<div class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<a class="nav-item nav-link" href="index.html">The Milenko Project</a>
-					<a class="nav-item nav-link active" href="livestats.html">GLaDOS Live Statistics</a>
-					<a class="nav-item nav-link" href="https://discord.gg/NrmTrSesPX">Discord Server</a>
-					<a class="nav-item nav-link" href="https://www.patreon.com/milenko">Patreon</a>
-					<a class="nav-item nav-link" href="https://ko-fi.com/milenko">Ko-fi</a>
-				</div>
-			</div>
-		</nav>
+		</div>
+
+		<!-- Region selector -->
+		<div id="region_selector" class="region_selector"></div>
 
 		<!-- Live stats -->
-		<div class="chart-container" style="position: relative; width: 100vw; height: 90vh">
+		<div class="chart-container" style="position: relative; height: calc(100vh - 48px);">
 			<canvas id="graph"></canvas>
 		</div>
 		<script src="statistics.js"></script>

@@ -15,7 +15,6 @@
 	color: #006DFF;
 }
 
-
 /* Card content */
 .card {
 	/* Lighter gray */
@@ -34,6 +33,22 @@ body {
 	font-family: opendyslexic;
 	/* Milenko red */
 	color: #E00050;
+}
+
+/* The div containing the region selector */
+#region_selector {
+	margin-top: 10px;
+	text-align: center;
+}
+
+/* The region checkboxes */
+.region_checkbox {
+	margin-right: 5px;
+}
+
+/* The checkbox labels */
+.region_label {
+	margin-right: 20px;
 }
 
 /* Links */
