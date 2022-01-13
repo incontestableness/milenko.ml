@@ -1,0 +1,27 @@
+@font-face {
+	font-family: "comicsans";
+	font-weight: normal;
+	font-style: normal;
+	src: url("https://milenko.ml/COMIC.TTF") format("truetype");
+}
+
+@font-face {
+	font-family: "comicsans";
+	font-weight: normal;
+	font-style: italic;
+	src: url("https://milenko.ml/COMIC.TTF") format("truetype");
+}
+
+@font-face {
+	font-family: "comicsans";
+	font-weight: bold;
+	font-style: normal;
+	src: url("https://milenko.ml/COMIC.TTF") format("truetype");
+}
+
+@font-face {
+	font-family: "comicsans";
+	font-weight: bold;
+	font-style: italic;
+	src: url("https://milenko.ml/COMIC.TTF") format("truetype");
+}

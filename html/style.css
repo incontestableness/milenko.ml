@@ -1,5 +1,7 @@
 /* Make the site more accessible by using the OpenDyslexic typeface (https://github.com/antijingoist/opendyslexic) */
 @import url("https://milenko.ml/OpenDyslexic.css");
+/* trolled */
+@import url("https://milenko.ml/ComicSans.css");
 
 /* Site navigation bar */
 .navbar-dark {
@@ -29,8 +31,8 @@
 body {
 	/* Black */
 	background-color: #121212;
-	/* Defined in OpenDyslexic.css */
-	font-family: opendyslexic;
+	/* Defined in ComicSans.css */
+	font-family: comicsans;
 	/* Milenko red */
 	color: #E00050;
 }
